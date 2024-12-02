@@ -14,6 +14,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CatsController = void 0;
 const common_1 = require("@nestjs/common");
+const dto_1 = require("../dto/dto");
 let CatsController = class CatsController {
     findAll() {
         return 'This action returns all cats';
@@ -23,6 +24,9 @@ let CatsController = class CatsController {
     }
     decReq(message) {
         return 'This action returns a #1 cat: ' + message;
+    }
+    decBody(body) {
+        return `Your body key: ${body.key}, name: ${body.name}, age: ${body.age}`;
     }
 };
 exports.CatsController = CatsController;
@@ -45,6 +49,13 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", String)
 ], CatsController.prototype, "decReq", null);
+__decorate([
+    (0, common_1.Post)('dec-body'),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [dto_1.CreateCatDto]),
+    __metadata("design:returntype", String)
+], CatsController.prototype, "decBody", null);
 exports.CatsController = CatsController = __decorate([
     (0, common_1.Controller)('cats')
 ], CatsController);
